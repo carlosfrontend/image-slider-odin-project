@@ -12,8 +12,9 @@ const previewButton = document.querySelector('.bi-caret-left');
 const circles = [...document.querySelectorAll('.circle')];
 
 // Starts with default picture image1
-myImageContainer.style.backgroundImage = `url(${myImages[0]})`;
 let index = 0;
+
+myImageContainer.style.backgroundImage = `url(${myImages[index]})`;
 circles[index].focus();
 
 // Background slide effect
@@ -22,37 +23,31 @@ const setBackgroundAnimation = () => {
   myImageContainer.style.backgroundImage = `url(${myImages[index]})`;
 };
 
-// Function for jump to next picture
-const nextPicture = () => {
-  index += 1;
-  if (index < 5) {
-    setBackgroundAnimation();
-    circles[index].focus();
-  } else {
-    index = 0;
-    setBackgroundAnimation();
-    circles[index].focus();
-  }
-};
+circles.forEach((el) => el.addEventListener('click', (e) => {
+  index = +e.target.getAttribute('tabindex');
+  setBackgroundAnimation();
+}));
 
-const previewPicture = () => {
+nextButton.addEventListener('click', () => {
+  if (index === myImages.length - 1) {
+    index = 0;
+    circles[index].focus();
+    setBackgroundAnimation();
+  } else {
+    index += 1;
+    circles[index].focus();
+    setBackgroundAnimation();
+  }
+});
+
+previewButton.addEventListener('click', () => {
   if (index === 0) {
     index = myImages.length - 1;
-    setBackgroundAnimation();
     circles[index].focus();
+    setBackgroundAnimation();
   } else {
     index -= 1;
-    setBackgroundAnimation();
     circles[index].focus();
+    setBackgroundAnimation();
   }
-};
-
-const handleCircleCLick = (e) => {
-  const circleIndex = e.target.getAttribute('tabindex');
-  circles[circleIndex].focus();
-  myImageContainer.style.backgroundImage = `url(${myImages[circleIndex]})`;
-};
-
-nextButton.addEventListener('click', nextPicture);
-previewButton.addEventListener('click', previewPicture);
-circles.forEach((circle) => circle.addEventListener('click', handleCircleCLick));
+});
