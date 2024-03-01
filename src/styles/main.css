@@ -20,18 +20,11 @@ body {
 }
 
 .image {
-  background-position-x: 0;
   background-repeat: no-repeat;
   background-image: url(../images/ju-guan-D-jLxBtEwaA-unsplash.jpg);
   background-size: cover;
   border-radius: 25px;
-  background-blend-mode: darken;
-  transition: all 400ms ease-in 100ms;
-}
-
-.image.slideNext {
-  background-position-x: 1000;
-  transform: rotate(0);
+  transition: all 300ms ease-in-out 100ms;
 }
 
 .arrows-container {
@@ -53,16 +46,16 @@ body {
   gap: 1em;
   align-items: center;
 }
-.circle-1,
-.circle-2,
-.circle-3,
-.circle-4,
-.circle-5 {
+
+.circle {
   height: 30px;
   width: 30px;
   border: 2px solid #ffffff;
   border-radius: 50%;
   cursor: pointer;
+}
+.circle.fill{
+  background-color: #ffffff;
 }
 .bi-caret-left,
 .bi-caret-right {

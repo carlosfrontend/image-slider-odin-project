@@ -8,16 +8,19 @@ import image5 from './images/thanh-nguyen-XZj8Z6Elmz4-unsplash.jpg';
 const myImages = [image1, image2, image3, image4, image5];
 const myImageContainer = document.querySelector('.image');
 const nextButton = document.querySelector('.bi-caret-right');
+const previewButton = document.querySelector('.bi-caret-left');
+const circles = [...document.querySelectorAll('.circle')];
 
 // Starts with default picture image1
 myImageContainer.style.backgroundImage = `url(${myImages[0]})`;
 let index = 0;
 
+circles[index].classList.add('fill');
+
 // Background slide effect
+
 const setBackgroundAnimation = () => {
   myImageContainer.style.backgroundImage = `url(${myImages[index]})`;
-  myImageContainer.classList.remove('slideNext');
-  myImageContainer.classList.add('slideNext');
 };
 
 // Function for jump to next picture
@@ -25,10 +28,29 @@ const nextPicture = () => {
   index += 1;
   if (index < 5) {
     setBackgroundAnimation();
+    circles[index - 1].classList.remove('fill');
+    circles[index].classList.add('fill');
   } else {
     index = 0;
     setBackgroundAnimation();
+    circles[circles.length - 1].classList.remove('fill');
+    circles[index].classList.add('fill');
+  }
+};
+
+const previewPicture = () => {
+  if (index === 0) {
+    circles[index].classList.remove('fill');
+    index = myImages.length - 1;
+    setBackgroundAnimation();
+    circles[index].classList.add('fill');
+  } else {
+    index -= 1;
+    setBackgroundAnimation();
+    circles[index].classList.add('fill');
+    circles[index + 1].classList.remove('fill');
   }
 };
 
 nextButton.addEventListener('click', nextPicture);
+previewButton.addEventListener('click', previewPicture);
