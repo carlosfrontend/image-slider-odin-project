@@ -16,8 +16,8 @@ let index = 0;
 // Background slide effect
 const setBackgroundAnimation = () => {
   myImageContainer.style.backgroundImage = `url(${myImages[index]})`;
-  myImageContainer.classList.remove('slide');
-  myImageContainer.classList.add('slide');
+  myImageContainer.classList.remove('slideNext');
+  myImageContainer.classList.add('slideNext');
 };
 
 // Function for jump to next picture
