@@ -14,8 +14,7 @@ const circles = [...document.querySelectorAll('.circle')];
 // Starts with default picture image1
 myImageContainer.style.backgroundImage = `url(${myImages[0]})`;
 let index = 0;
-
-circles[index].classList.add('fill');
+circles[index].focus();
 
 // Background slide effect
 
@@ -28,29 +27,32 @@ const nextPicture = () => {
   index += 1;
   if (index < 5) {
     setBackgroundAnimation();
-    circles[index - 1].classList.remove('fill');
-    circles[index].classList.add('fill');
+    circles[index].focus();
   } else {
     index = 0;
     setBackgroundAnimation();
-    circles[circles.length - 1].classList.remove('fill');
-    circles[index].classList.add('fill');
+    circles[index].focus();
   }
 };
 
 const previewPicture = () => {
   if (index === 0) {
-    circles[index].classList.remove('fill');
     index = myImages.length - 1;
     setBackgroundAnimation();
-    circles[index].classList.add('fill');
+    circles[index].focus();
   } else {
     index -= 1;
     setBackgroundAnimation();
-    circles[index].classList.add('fill');
-    circles[index + 1].classList.remove('fill');
+    circles[index].focus();
   }
+};
+
+const handleCircleCLick = (e) => {
+  const circleIndex = e.target.getAttribute('tabindex');
+  circles[circleIndex].focus();
+  myImageContainer.style.backgroundImage = `url(${myImages[circleIndex]})`;
 };
 
 nextButton.addEventListener('click', nextPicture);
 previewButton.addEventListener('click', previewPicture);
+circles.forEach((circle) => circle.addEventListener('click', handleCircleCLick));
