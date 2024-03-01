@@ -13,18 +13,25 @@ body {
   align-content: center;
 }
 
-
 .pictures-frame,
 .arrows-container {
-    width: 600px;
-    height: 480px;
-    /* background-color: rgba(236, 236, 243, 0.457); mask */
+  width: 600px;
+  height: 480px;
 }
 
 .image {
-  background-position: center center;
+  background-position-x: 0;
+  background-repeat: no-repeat;
+  background-image: url(../images/ju-guan-D-jLxBtEwaA-unsplash.jpg);
   background-size: cover;
   border-radius: 25px;
+  background-blend-mode: darken;
+  transition: all 400ms ease-in 100ms;
+}
+
+.image.slideNext {
+  background-position-x: 1000;
+  transform: rotate(0);
 }
 
 .arrows-container {
@@ -35,8 +42,6 @@ body {
   border-radius: 25px;
   box-shadow: 4px 3px 3px rgba(0, 0, 0, 0.329);
 }
-
-
 
 .circles-container {
   position: relative;
