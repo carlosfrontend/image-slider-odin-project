@@ -6,6 +6,6 @@ Links:
 
 :white_check_mark: [Assigments](https://www.theodinproject.com/lessons/node-path-javascript-dynamic-user-interface-interactions#image-slider) :blue_book:
 
-:white_check_mark: [Live Preview](https://carlosfrontend.github.io/images-slider-odin-project/) :computer:
+:white_check_mark: [Live Preview](https://carlosfrontend.github.io/image-slider-odin-project/) :computer:
 
  Happy Coding!! :coffee: :rocket:
