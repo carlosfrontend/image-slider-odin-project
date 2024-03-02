@@ -17,18 +17,41 @@ let index = 0;
 myImageContainer.style.backgroundImage = `url(${myImages[index]})`;
 circles[index].focus();
 
-// Background slide effect
+// Background slide effect function
 
 const setBackgroundAnimation = () => {
   myImageContainer.style.backgroundImage = `url(${myImages[index]})`;
 };
 
+// Handler for automatic slider
+
+const automaticSilder = () => {
+  if (index < 4) {
+    index += 1;
+    setBackgroundAnimation();
+    circles[index].focus();
+  } else {
+    index = 0;
+    setBackgroundAnimation();
+    circles[index].focus();
+  }
+};
+
+// Timmer
+
+let slider = setInterval(automaticSilder, 5000);
+
+// Click event handlers
+
 circles.forEach((el) => el.addEventListener('click', (e) => {
+  clearInterval(slider);
   index = +e.target.getAttribute('tabindex');
   setBackgroundAnimation();
+  slider = setInterval(automaticSilder, 5000);
 }));
 
 nextButton.addEventListener('click', () => {
+  clearInterval(slider);
   if (index === myImages.length - 1) {
     index = 0;
     circles[index].focus();
@@ -38,9 +61,11 @@ nextButton.addEventListener('click', () => {
     circles[index].focus();
     setBackgroundAnimation();
   }
+  slider = setInterval(automaticSilder, 5000);
 });
 
 previewButton.addEventListener('click', () => {
+  clearInterval(slider);
   if (index === 0) {
     index = myImages.length - 1;
     circles[index].focus();
@@ -50,4 +75,5 @@ previewButton.addEventListener('click', () => {
     circles[index].focus();
     setBackgroundAnimation();
   }
+  slider = setInterval(automaticSilder, 5000);
 });

@@ -2,5 +2,11 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "always"
     },
-    "eslint.validate": ["javascript"]
+    "eslint.validate": [
+        "javascript"
+    ],
+    "explorer.excludeGitIgnore": true,
+    "files.exclude": {
+        "**/.vscode": true
+    }
 }
